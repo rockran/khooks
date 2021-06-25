@@ -1,33 +1,25 @@
-
 ## useSelect
 
 Demo:
 
 ```tsx
-import React,{ useEffect } from 'react';
-import { Select } from 'antd'
-import { useSelect } from 'rhooks'
+import React, { useEffect } from 'react';
+import { Select } from 'antd';
+import { useSelect } from 'khooks';
 
-const api = ()=>{
+const api = () => {
   return Promise.resolve({
-    data:[
-      {label:'下拉一',value:'1'}
-    ]
-  })
-}
+    data: [{ label: '下拉一', value: '1' }],
+  });
+};
 
+export default () => {
+  const select = useSelect(api, {});
 
-export default ()=>{
-  const select = useSelect(api,{
-    
-  })
+  useEffect(() => {
+    select.search();
+  }, []);
 
-  useEffect(()=>{
-    select.search()
-  },[])
-
-  return <Select style={{ width: 200 }} {...select.props}></Select>
-}
-
+  return <Select style={{ width: 200 }} {...select.props}></Select>;
+};
 ```
-
